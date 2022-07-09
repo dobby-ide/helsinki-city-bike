@@ -1,0 +1,12 @@
+{
+  "name": "helsinki-city-bike",
+  "version": "1.0.0",
+  "description": "full-stack app to describe/highlight some datasets offered by Helsinki-city-bike",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Fabio Privitera",
+  "license": "ISC"
+}
