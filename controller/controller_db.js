@@ -19,10 +19,10 @@ module.exports = {
     });
   },
   //total numbers of row in may table
-  totalsofmonth: (month) => {
+  totalsofmonth: (monthtable, departure, returning) => {
     function myProm(resolve, reject) {
       dbConnection.query(
-        `SELECT COUNT(id) as newid FROM ${month}`,
+        `SELECT COUNT(id) as newid FROM ${monthtable} WHERE departure>"${departure}" AND departure <"${returning}"`,
         (err, results) => {
           if (results) {
             resolve(results);
@@ -35,16 +35,19 @@ module.exports = {
     return new Promise(myProm);
   },
 
-  //find all
-  findAll: () => {
+  //COUNT of ONLY MONTH
+  totalsofonlymonth: (monthtable) => {
     function myProm(resolve, reject) {
-      dbConnection.query('SELECT * FROM may LIMIT 100', (err, results) => {
-        if (results) {
-          resolve(results);
-        } else {
-          reject(console.log(err));
+      dbConnection.query(
+        `SELECT COUNT(id) as newid FROM ${monthtable}`,
+        (err, results) => {
+          if (results) {
+            resolve(results);
+          } else {
+            reject(console.log(err));
+          }
         }
-      });
+      );
     }
     return new Promise(myProm);
   },
@@ -59,6 +62,54 @@ module.exports = {
             resolve(results);
           } else {
             reject(console.log('here'));
+          }
+        }
+      );
+    }
+    return new Promise(myProm);
+  },
+  //1000 results,only sort and month parameters
+  sortbyandmonth: (monthtable, page, sort) => {
+    function myProm(resolve, reject) {
+      dbConnection.query(
+        `SELECT * FROM ${monthtable} where id>${page}*1000 AND id < (${page} + 1)*1000 ORDER BY ${sort}`,
+        (err, results) => {
+          if (results) {
+            resolve(results);
+          } else {
+            reject(console.log('here'));
+          }
+        }
+      );
+    }
+    return new Promise(myProm);
+  },
+  //sorting by distance or duration
+  findSortedSinglepageOfData: (monthtable, page, sort, start, end) => {
+    function myProm(resolve, reject) {
+      dbConnection.query(
+        `SELECT * FROM ${monthtable} where departure>"${start}" AND departure<"${end}" ORDER BY ${sort} LIMIT 50000`,
+        (err, results) => {
+          if (results) {
+            resolve(results);
+          } else {
+            reject(console.log(err));
+          }
+        }
+      );
+    }
+    return new Promise(myProm);
+  },
+  //retrieves all stations name
+  findAllStations: () => {
+    function myProm(resolve, reject) {
+      dbConnection.query(
+        'SELECT name,address,FID,x_coord,y_coord FROM stations',
+        (err, results) => {
+          if (results) {
+            resolve(results);
+          } else {
+            reject(console.log(err));
           }
         }
       );
