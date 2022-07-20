@@ -1,0 +1,113 @@
+*{
+  margin:0;
+  box-sizing: border-box;
+
+}
+  .leaflet-container{
+  width:100vw;
+  height:100vh;
+}
+html{
+  font-size:10px;
+}
+body{
+  font-family:"Lato", sans-serif;
+}
+.map{
+  width:400px;
+  position:absolute;
+  top:30rem;
+  left:50rem;
+}
+.fetcher{
+  
+background-color: rgb(255, 250, 250);
+
+  &__data{
+    margin-bottom:90px;
+    width:600px;
+    display:grid;
+    &--header{
+      font-size: 1.5rem;
+      width:700px;
+      display:grid;
+        position: fixed;
+    background-color: rgba(rgb(81, 255, 0),.9);
+    height: 40px;
+    top: 0;
+    left: 0;
+    right: 0;
+  &-1{
+    grid-row-start: 2;
+    grid-column-start: 1;
+  }
+  &-2{
+    
+    grid-row-start: 2;
+    grid-column-start: 2;
+  }
+  &-3{
+    
+    grid-row-start: 2;
+    grid-column-start: 3;
+  }
+  &-4{
+   margin-right:-30px;
+    grid-row-start: 2;
+    grid-column-start: 4;
+  }
+  &-5{
+   margin-left:30px;
+    grid-row-start: 1;
+    grid-column-start: 1;
+  }
+}
+&-depstation{
+  width:25%;
+  margin:2px;
+}
+&-arrstation{
+  width:25%;
+  margin-left:32px;
+}
+&-duration{
+margin-left:20px;
+  width:25%;
+  
+}
+&-distance{
+  width:25%;
+  margin-right:70px;
+}
+    &-content{
+      border-bottom: 1px solid gray;
+    width:140%;
+    grid-column-start: 1;
+    grid-column-end:4;
+     display:flex;
+    
+      
+    }
+  }
+&__pages{
+  position:fixed;
+  bottom:0;
+  left:0;
+  overflow-x:scroll;
+  width:500px;
+  display:flex;
+  flex-direction: row;
+  &-header{
+    background-color: rgba(red,.6);
+    position:fixed;
+    bottom:40px;
+    left:0;
+  }
+  &-content{
+    cursor: pointer;
+    margin:2px;
+    background-color: antiquewhite;
+    padding:2px;
+  }
+}
+}
