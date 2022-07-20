@@ -1,38 +1,89 @@
-.App {
-  text-align: center;
-}
+* {
+  margin: 0;
+  box-sizing: border-box; }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
+.leaflet-container {
+  width: 100vw;
+  height: 100vh; }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
+html {
+  font-size: 10px; }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
+body {
+  font-family: "Lato", sans-serif; }
 
-.App-link {
-  color: #61dafb;
-}
+.map {
+  width: 400px;
+  position: absolute;
+  top: 30rem;
+  left: 50rem; }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+.fetcher {
+  background-color: snow; }
+  .fetcher__data {
+    margin-bottom: 90px;
+    width: 600px;
+    display: grid; }
+    .fetcher__data--header {
+      font-size: 1.5rem;
+      width: 700px;
+      display: grid;
+      position: fixed;
+      background-color: rgba(81, 255, 0, 0.9);
+      height: 40px;
+      top: 0;
+      left: 0;
+      right: 0; }
+      .fetcher__data--header-1 {
+        grid-row-start: 2;
+        grid-column-start: 1; }
+      .fetcher__data--header-2 {
+        grid-row-start: 2;
+        grid-column-start: 2; }
+      .fetcher__data--header-3 {
+        grid-row-start: 2;
+        grid-column-start: 3; }
+      .fetcher__data--header-4 {
+        margin-right: -30px;
+        grid-row-start: 2;
+        grid-column-start: 4; }
+      .fetcher__data--header-5 {
+        margin-left: 30px;
+        grid-row-start: 1;
+        grid-column-start: 1; }
+    .fetcher__data-depstation {
+      width: 25%;
+      margin: 2px; }
+    .fetcher__data-arrstation {
+      width: 25%;
+      margin-left: 32px; }
+    .fetcher__data-duration {
+      margin-left: 20px;
+      width: 25%; }
+    .fetcher__data-distance {
+      width: 25%;
+      margin-right: 70px; }
+    .fetcher__data-content {
+      border-bottom: 1px solid gray;
+      width: 140%;
+      grid-column-start: 1;
+      grid-column-end: 4;
+      display: flex; }
+  .fetcher__pages {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    overflow-x: scroll;
+    width: 500px;
+    display: flex;
+    flex-direction: row; }
+    .fetcher__pages-header {
+      background-color: rgba(255, 0, 0, 0.6);
+      position: fixed;
+      bottom: 40px;
+      left: 0; }
+    .fetcher__pages-content {
+      cursor: pointer;
+      margin: 2px;
+      background-color: antiquewhite;
+      padding: 2px; }
