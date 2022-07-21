@@ -27,6 +27,7 @@ const SortChoice = ({ userChoices }) => {
     let stationNames = data.data;
     setStations(stationNames);
   };
+  const [invalid, setInvalid] = useState(false);
   const [month, setMonth] = useState('');
   const [sort, setSort] = useState('');
   const [beginDay, setBeginDay] = useState();
@@ -43,17 +44,22 @@ const SortChoice = ({ userChoices }) => {
   };
   //passing month parameter to the parent component(App) via prop (monthchoice)
   const sendingOptions = () => {
-    userChoices(
-      month,
-      sort,
-      beginDay,
-      endDay,
-      distanceParam1,
-      distanceParam2,
-      station,
-      duration1,
-      duration2
-    );
+    if (month) {
+      setInvalid(false);
+      userChoices(
+        month,
+        sort,
+        beginDay,
+        endDay,
+        distanceParam1,
+        distanceParam2,
+        station,
+        duration1,
+        duration2
+      );
+    } else {
+      setInvalid(true);
+    }
   };
   const selectingStartDay = (e) => {
     setBeginDay(e.target.value);
@@ -98,7 +104,7 @@ const SortChoice = ({ userChoices }) => {
           <option></option>
           {stations.map((station) => {
             return (
-              <option value={station.FID} key={station.FID}>
+              <option value={station.ID} key={station.FID}>
                 {station.name} &nbsp; {station.address}
               </option>
             );
@@ -177,6 +183,7 @@ const SortChoice = ({ userChoices }) => {
         </select>
       </div>
       <button onClick={sendingOptions}>OK</button>
+      {invalid ? <div>choose a month</div> : null}
     </div>
   );
 };
