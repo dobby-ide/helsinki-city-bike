@@ -396,7 +396,7 @@ module.exports = {
   ) => {
     function myProm(resolve, reject) {
       dbConnection.query(
-        `SELECT * FROM ${monthtable} where covered_distance<${distance1} AND covered_distance>${distance2} AND departure_station_id=${station} AND departure>"${start}" AND departure<"${end}"  LIMIT 50000`,
+        `SELECT * FROM ${monthtable} where covered_distance>${distance1} AND covered_distance<${distance2} AND departure_station_id=${station} AND departure>"${start}" AND departure<"${end}"  LIMIT 50000`,
         (err, results) => {
           if (results) {
             resolve(results);
@@ -698,7 +698,7 @@ module.exports = {
   findAllStations: () => {
     function myProm(resolve, reject) {
       dbConnection.query(
-        'SELECT name,address,FID,x_coord,y_coord FROM stations',
+        'SELECT name,address,ID,FID,x_coord,y_coord FROM stations',
         (err, results) => {
           if (results) {
             resolve(results);
