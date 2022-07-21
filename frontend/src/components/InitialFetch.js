@@ -22,7 +22,7 @@ function InitialFetch({
     setNumberOfRows('');
     setPageOfData(['']);
     getNumberOfRows();
-  }, [dataset]);
+  }, [dataset, sort, duration2, distance2, enddayofsearch, station]);
   //using axios to query the server: get the total numbers of tours only and then divide them to have pagination in numbers
   const getNumberOfRows = async () => {
     //writing some crazy logic here to match all the possible filter/sort possibilities for the user query
