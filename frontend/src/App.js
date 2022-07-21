@@ -48,6 +48,7 @@ function App() {
       setChosenSort(sortby);
     }
   };
+  //initial choice gives the user the possibility to switch from views(stations, filter..)
   const initialchoice = (e) => {
     console.log(e);
     setInitialChoice(e);
