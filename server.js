@@ -774,3 +774,15 @@ app.route('/allstations').get(async (req, res) => {
     res.status(404).end();
   }
 });
+
+//single station informations
+app.route('/infostation').get(async (req, res) => {
+  const fid=req.query.fid;
+  try {
+    const result = await database.findInfoStation(fid);
+    console.log(result.length);
+    res.status(200).send(result);
+  } catch (err) {
+    res.status(404).end();
+  }
+});
