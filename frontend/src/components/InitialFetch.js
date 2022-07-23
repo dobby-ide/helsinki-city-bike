@@ -230,6 +230,10 @@ function InitialFetch({
       const emptyArray = [...Array(total).keys()];
       console.log(emptyArray);
       setArrayOfpages(emptyArray);
+      let pieceOfData = await axios.get(
+        `http://localhost:3000/page?page=0&month=${dataset}`
+      );
+      setPageOfData(pieceOfData.data);
     }
   };
 
@@ -263,21 +267,95 @@ function InitialFetch({
       setFinalDate(convertedDate);
     }
   };
+  //SORTING RESULTS ACCORDING TO COLUMNS PROVIDED
+  const sortByDepartureStation = () => {
+    const array = [...pageOfData];
+
+    array.sort((a, b) =>
+      a.departure_station
+        .toLowerCase()
+        .localeCompare(b.departure_station.toLowerCase())
+    );
+    setPageOfData(array);
+  };
+  const sortByArriveStation = () => {
+    const array = [...pageOfData];
+    array.sort((a, b) =>
+      a.return_station
+        .toLowerCase()
+        .localeCompare(b.return_station.toLowerCase())
+    );
+    console.log(array);
+    setPageOfData(array);
+  };
+  const sortingByDate = () => {
+    const array = [...pageOfData];
+    array.sort((a, b) => {
+      return new Date(b.departure) - new Date(a.departure);
+    });
+    console.log(array);
+    setPageOfData(array);
+  };
+  const sortingByDistance = () => {
+    const array = [...pageOfData];
+    array.sort((a, b) => {
+      return b.covered_distance - a.covered_distance;
+    });
+    console.log(array);
+    setPageOfData(array);
+  };
+  const sortingByDuration = () => {
+    const array = [...pageOfData];
+    array.sort((a, b) => {
+      return b.duration - a.duration;
+    });
+    console.log(array);
+    setPageOfData(array);
+  };
 
   return (
     <div className="fetcher">
-      {pageOfData ? (
+      {pageOfData.length !== 0 ? (
         <div className="fetcher__data">
           <div className="fetcher__data--header">
-            <div className="fetcher__data--header-1">departure station</div>
-            <div className="fetcher__data--header-2">arrive station</div>
-            <div className="fetcher__data--header-3">duration(minutes)</div>
-            <div className="fetcher__data--header-4">distance</div>
-            <div className="fetcher__data--header-5">day:{startDate}</div>
+            <div
+              className="fetcher__data--header-1"
+              onClick={sortByDepartureStation}
+            >
+              departure station
+            </div>
+            <div
+              className="fetcher__data--header-2"
+              onClick={sortByArriveStation}
+            >
+              return station
+            </div>
+            <div
+              className="fetcher__data--header-3"
+              onClick={sortingByDuration}
+            >
+              duration(minutes)
+            </div>
+            <div
+              className="fetcher__data--header-4"
+              onClick={sortingByDistance}
+            >
+              distance
+            </div>
+            <div className="fetcher__data--header-5" onClick={sortingByDate}>
+              day
+            </div>
           </div>
           {pageOfData.map((x) => {
             return (
               <div className="fetcher__data-content">
+                <div className="fetcher__data-departure">
+                  {new Date(x.departure)
+                    .toDateString()
+                    .split(' ')
+                    .slice(1)
+                    .join(' ')}
+                </div>
                 <div className="fetcher__data-depstation">
                   {x.departure_station}
                 </div>
@@ -301,20 +379,22 @@ function InitialFetch({
         total number of queries in {dataset.toUpperCase()}: {numberOfRows}
       </h1>
       <div className="fetcher__pages">
-        {numberOfRows
-          ? arrayOfPages.map((x) => {
-              return (
-                <div
-                  className="fetcher__pages-content"
-                  key={x}
-                  id={x}
-                  onClick={fetching}
-                >
-                  {x}
-                </div>
-              );
-            })
-          : null}
+        {numberOfRows ? (
+          arrayOfPages.map((x) => {
+            return (
+              <div
+                className="fetcher__pages-content"
+                key={x}
+                id={x}
+                onClick={fetching}
+              >
+                {x}
+              </div>
+            );
+          })
+        ) : (
+          <div>...LOADING</div>
+        )}
       </div>
     </div>
   );
