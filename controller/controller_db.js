@@ -710,4 +710,32 @@ module.exports = {
     }
     return new Promise(myProm);
   },
+
+  //find info station
+  findInfoStation: (fid) => {
+    function myProm(resolve, reject) {
+      dbConnection.query(
+        `SELECT 
+(select count(*) from may where departure_station_id=${fid})
++
+(select count(*) from june where departure_station_id=${fid})
++
+(select count(*) from july where departure_station_id=${fid})
+UNION ALL(SELECT 
+(select count(*) from may where return_station_id=${fid})
++
+(select count(*) from june where return_station_id=${fid})
++
+(select count(*) from july where return_station_id=${fid}));`,
+        (err, results) => {
+          if (results) {
+            resolve(results);
+          } else {
+            reject(console.log(err));
+          }
+        }
+      );
+    }
+    return new Promise(myProm);
+  },
 };
