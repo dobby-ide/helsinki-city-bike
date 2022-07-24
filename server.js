@@ -786,3 +786,27 @@ app.route('/infostation').get(async (req, res) => {
     res.status(404).end();
   }
 });
+
+//further info station
+app.route('/furtherinfostation').get(async (req, res) => {
+  const id = req.query.id;
+  try {
+    const result = await database.findFurtherInfoStation(id);
+    console.log(result.length);
+    res.status(200).send(result);
+  } catch (err) {
+    res.status(404).end();
+  }
+});
+//TOP 5 stations
+app.route('/top5stations').get(async (req, res) => {
+  const id = req.query.id;
+  const month = req.query.month;
+  try {
+    const result = await database.findtop5stations(id,month);
+    console.log(result.length);
+    res.status(200).send(result);
+  } catch (err) {
+    res.status(404).end();
+  }
+});
