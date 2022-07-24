@@ -738,4 +738,61 @@ UNION ALL(SELECT
     }
     return new Promise(myProm);
   },
+
+  findFurtherInfoStation: (id) => {
+    function myProm(resolve, reject) {
+      dbConnection.query(
+        `SELECT (SELECT AVG(covered_distance)  FROM may
+WHERE departure_station_id=${id}) as average
+union SELECT (SELECT AVG(covered_distance)  FROM june
+WHERE departure_station_id=${id})
+union SELECT (SELECT AVG(covered_distance)  FROM july
+WHERE departure_station_id=${id})
+union SELECT (SELECT AVG(covered_distance)  FROM may
+WHERE return_station_id=${id})
+union SELECT (SELECT AVG(covered_distance)  FROM june
+WHERE return_station_id=${id})
+union SELECT (SELECT AVG(covered_distance)  FROM july
+WHERE return_station_id=${id})`,
+        (err, results) => {
+          if (results) {
+            resolve(results);
+          } else {
+            reject(console.log(err));
+          }
+        }
+      );
+    }
+    return new Promise(myProm);
+  },
+
+  //TOP 5 stations
+  findtop5stations: (id, month) => {
+    function myProm(resolve, reject) {
+      dbConnection.query(
+        `(
+  SELECT departure_station, return_station,departure_station_id,return_station_id, COUNT(departure_station_id) as cont FROM ${month} 
+WHERE return_station_id=${id}
+GROUP BY departure_station_id
+ORDER BY cont DESC LIMIT 5
+)
+UNION
+(
+  SELECT  departure_station,return_station, departure_station_id,return_station_id,COUNT(return_station_id) as cont FROM ${month} 
+WHERE departure_station_id=${id}
+GROUP BY return_station_id
+ORDER BY cont DESC LIMIT 5
+)
+`,
+        (err, results) => {
+          if (results) {
+            resolve(results);
+          } else {
+            reject(console.log(err));
+          }
+        }
+      );
+    }
+    return new Promise(myProm);
+  },
 };
