@@ -1,3 +1,42 @@
+.sortchoice {
+  margin-left: 50%;
+  transform: translateX(-50%);
+  max-width: 100%;
+  margin-top: 5rem;
+  display: grid;
+  align-content: space-between; }
+  .sortchoice--month {
+    grid-row-start: 1;
+    grid-column-start: 1; }
+  .sortchoice--fromstation {
+    grid-row-start: 2;
+    grid-column-start: 1; }
+  .sortchoice--day {
+    width: 44%;
+    grid-row-start: 1;
+    grid-row-end: 1;
+    grid-column-start: 3;
+    grid-column-end: 4;
+    display: flex;
+    flex-direction: row; }
+  .sortchoice--distance {
+    display: flex;
+    flex-direction: row;
+    grid-row-start: 3;
+    grid-column-start: 3; }
+  .sortchoice--duration {
+    display: flex;
+    flex-direction: row;
+    grid-row-start: 2;
+    grid-column-start: 3; }
+  .sortchoice--sortby {
+    grid-row-start: 3;
+    grid-column-start: 1; }
+  .sortchoice--btn {
+    grid-row-start: 5;
+    grid-column-start: 1;
+    margin-top: 3rem; }
+
 * {
   margin: 0;
   box-sizing: border-box; }
