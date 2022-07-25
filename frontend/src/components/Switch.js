@@ -11,26 +11,14 @@ const Switch = ({ initialchoice }) => {
     }
   };
   return (
-    <div>
-      <div id="journey" onClick={onStarting}>
+    <div className="switchcontainer">
+      <div id="sort" onClick={onStarting}>
         Journeys
       </div>
-      <div id="stationlist" onClick={onStarting}>
-        Station List
-      </div>
+
       <div id="singlestation" onClick={onStarting}>
         Single Station View
       </div>
-      {journeySearch ? (
-        <div>
-          <div id="filter" onClick={onStarting}>
-            filter
-          </div>
-          <div id="sort" onClick={onStarting}>
-            sort
-          </div>
-        </div>
-      ) : null}
     </div>
   );
 };

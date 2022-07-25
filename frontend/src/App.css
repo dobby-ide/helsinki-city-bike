@@ -12,6 +12,22 @@ html {
 body {
   font-family: "Lato", sans-serif; }
 
+.App {
+  height: 50rem;
+  border: 1px solid black;
+  width: 70vw;
+  margin-left: 50%;
+  transform: translateX(-50%); }
+
+.switchcontainer {
+  margin-left: 50%;
+  transform: translateX(-50%);
+  border: 1px solid black;
+  width: 40rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between; }
+
 .map {
   width: 400px;
   position: absolute;
