@@ -18,9 +18,11 @@ function InitialFetch({
   const [pageOfData, setPageOfData] = useState([]);
   const [startDate, setStartDate] = useState();
   const [finalDate, setFinalDate] = useState();
+  const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
     setNumberOfRows('');
     setPageOfData(['']);
+    setIsLoading(true);
     getNumberOfRows();
   }, [dataset, sort, duration2, distance2, enddayofsearch, station]);
   //using axios to query the server: get the total numbers of tours only and then divide them to have pagination in numbers
@@ -34,6 +36,8 @@ function InitialFetch({
         `http://localhost:3000/sortedpageallparams?month=${dataset}&sort=${sort}&start=${startdayofsearch}&end=${enddayofsearch}&distance1=${distance1}&distance2=${distance2}&station=${station}&duration1=${duration1}&duration2=${duration2}`
       );
       setPageOfData(data.data);
+      setIsLoading(false);
+      setIsLoading(false);
     }
 
     //4 cases
@@ -43,24 +47,28 @@ function InitialFetch({
         `http://localhost:3000/sortdaydurationstation?month=${dataset}&sort=${sort}&start=${startdayofsearch}&end=${enddayofsearch}&station=${station}&duration1=${duration1}&duration2=${duration2}`
       );
       setPageOfData(data.data);
+      setIsLoading(false);
     } else if (sort && enddayofsearch && distance2 && duration2) {
       console.log('inside sort,dayduration,distance');
       const data = await axios.get(
         `http://localhost:3000/sortdaydistanceduration?month=${dataset}&sort=${sort}&start=${startdayofsearch}&end=${enddayofsearch}&distance1=${distance1}&distance2=${distance2}&duration1=${duration1}&duration2=${duration2}`
       );
       setPageOfData(data.data);
+      setIsLoading(false);
     } else if (sort && enddayofsearch && station && distance2) {
       console.log('inside sort,day,distance station');
       const data = await axios.get(
         `http://localhost:3000/sortdaydistancestation?month=${dataset}&sort=${sort}&start=${startdayofsearch}&end=${enddayofsearch}&distance1=${distance1}&distance2=${distance2}&station=${station}`
       );
       setPageOfData(data.data);
+      setIsLoading(false);
     } else if (sort && duration2 && station && distance2) {
       console.log('inside sortduration2station distance');
       const data = await axios.get(
         `http://localhost:3000/sortdurationdistancestation?month=${dataset}&sort=${sort}&distance1=${distance1}&distance2=${distance2}&station=${station}&duration1=${duration1}&duration2=${duration2}`
       );
       setPageOfData(data.data);
+      setIsLoading(false);
     }
     //3 cases
     else if (sort && enddayofsearch && duration2) {
@@ -69,60 +77,70 @@ function InitialFetch({
         `http://localhost:3000/sortdayduration?month=${dataset}&sort=${sort}&start=${startdayofsearch}&end=${enddayofsearch}&duration1=${duration1}&duration2=${duration2}`
       );
       setPageOfData(data.data);
+      setIsLoading(false);
     } else if (sort && enddayofsearch && station) {
       console.log('inside sort,day station ');
       const data = await axios.get(
         `http://localhost:3000/sortdaystation?month=${dataset}&sort=${sort}&start=${startdayofsearch}&end=${enddayofsearch}&station=${station}&`
       );
       setPageOfData(data.data);
+      setIsLoading(false);
     } else if (sort && enddayofsearch && distance2) {
       console.log('inside sort,day,distance');
       const data = await axios.get(
         `http://localhost:3000/sortdaydistance?month=${dataset}&sort=${sort}&start=${startdayofsearch}&end=${enddayofsearch}&distance1=${distance1}&distance2=${distance2}`
       );
       setPageOfData(data.data);
+      setIsLoading(false);
     } else if (sort && duration2 && station) {
       console.log('inside sortduration2station ');
       const data = await axios.get(
         `http://localhost:3000/sortdurationstation?month=${dataset}&sort=${sort}&station=${station}&duration1=${duration1}&duration2=${duration2}`
       );
       setPageOfData(data.data);
+      setIsLoading(false);
     } else if (sort && duration2 && distance2) {
       console.log('inside sort duration distance');
       const data = await axios.get(
         `http://localhost:3000/sortdurationdistance?month=${dataset}&sort=${sort}&distance1=${distance1}&distance2=${distance2}&duration1=${duration1}&duration2=${duration2}`
       );
       setPageOfData(data.data);
+      setIsLoading(false);
     } else if (sort && station && distance2) {
       console.log('inside sort station distance');
       const data = await axios.get(
         `http://localhost:3000/sortstationdistance?month=${dataset}&sort=${sort}&distance1=${distance1}&distance2=${distance2}&station=${station}`
       );
       setPageOfData(data.data);
+      setIsLoading(false);
     } else if (enddayofsearch && duration2 && station) {
       console.log('dayduration2station ');
       const data = await axios.get(
         `http://localhost:3000/daydurationstation?month=${dataset}&start=${startdayofsearch}&end=${enddayofsearch}&station=${station}&duration1=${duration1}&duration2=${duration2}`
       );
       setPageOfData(data.data);
+      setIsLoading(false);
     } else if (enddayofsearch && duration2 && distance2) {
       console.log('dayduration2distance');
       const data = await axios.get(
         `http://localhost:3000/daydurationdistance?month=${dataset}&start=${startdayofsearch}&end=${enddayofsearch}&distance1=${distance1}&distance2=${distance2}&duration1=${duration1}&duration2=${duration2}`
       );
       setPageOfData(data.data);
+      setIsLoading(false);
     } else if (enddayofsearch && station && distance2) {
       console.log('inside day station distance');
       const data = await axios.get(
         `http://localhost:3000/daystationdistance?month=${dataset}&start=${startdayofsearch}&end=${enddayofsearch}&distance1=${distance1}&distance2=${distance2}&station=${station}`
       );
       setPageOfData(data.data);
+      setIsLoading(false);
     } else if (duration2 && station && distance2) {
       console.log('duration2station distance');
       const data = await axios.get(
         `http://localhost:3000/durationstationdistance?month=${dataset}&distance1=${distance1}&distance2=${distance2}&station=${station}&duration1=${duration1}&duration2=${duration2}`
       );
       setPageOfData(data.data);
+      setIsLoading(false);
     }
     //two cases
     else if (sort && enddayofsearch) {
@@ -131,60 +149,70 @@ function InitialFetch({
         `http://localhost:3000/sortday?month=${dataset}&sort=${sort}&start=${startdayofsearch}&end=${enddayofsearch}`
       );
       setPageOfData(data.data);
+      setIsLoading(false);
     } else if (sort && duration2) {
       console.log('inside sortduration2');
       const data = await axios.get(
         `http://localhost:3000/sortduration?month=${dataset}&sort=${sort}&duration1=${duration1}&duration2=${duration2}`
       );
       setPageOfData(data.data);
+      setIsLoading(false);
     } else if (sort && station) {
       console.log('inside sort station ');
       const data = await axios.get(
         `http://localhost:3000/sortstation?month=${dataset}&sort=${sort}&station=${station}`
       );
       setPageOfData(data.data);
+      setIsLoading(false);
     } else if (sort && distance2) {
       console.log('inside sort,distance');
       const data = await axios.get(
         `http://localhost:3000/sortdistance?month=${dataset}&sort=${sort}&distance1=${distance1}&distance2=${distance2}`
       );
       setPageOfData(data.data);
+      setIsLoading(false);
     } else if (enddayofsearch && duration2) {
       console.log('inside dayduration2');
       const data = await axios.get(
         `http://localhost:3000/dayduration?month=${dataset}&start=${startdayofsearch}&end=${enddayofsearch}&duration1=${duration1}&duration2=${duration2}`
       );
       setPageOfData(data.data);
+      setIsLoading(false);
     } else if (enddayofsearch && station) {
       console.log('inside day station ');
       const data = await axios.get(
         `http://localhost:3000/daystation?month=${dataset}&start=${startdayofsearch}&end=${enddayofsearch}&station=${station}`
       );
       setPageOfData(data.data);
+      setIsLoading(false);
     } else if (enddayofsearch && distance2) {
       console.log('inside day,distance');
       const data = await axios.get(
         `http://localhost:3000/daydistance?month=${dataset}&start=${startdayofsearch}&end=${enddayofsearch}&distance1=${distance1}&distance2=${distance2}`
       );
       setPageOfData(data.data);
+      setIsLoading(false);
     } else if (duration2 && station) {
       console.log('insideduration2station ');
       const data = await axios.get(
         `http://localhost:3000/durationstation?month=${dataset}&station=${station}&duration1=${duration1}&duration2=${duration2}`
       );
       setPageOfData(data.data);
+      setIsLoading(false);
     } else if (duration2 && distance2) {
       console.log('insideduration2distance');
       const data = await axios.get(
         `http://localhost:3000/durationdistance?month=${dataset}&distance1=${distance1}&distance2=${distance2}&duration1=${duration1}&duration2=${duration2}`
       );
       setPageOfData(data.data);
+      setIsLoading(false);
     } else if (station && distance2) {
       console.log('inside distance station');
       const data = await axios.get(
         `http://localhost:3000/stationdistance?month=${dataset}&distance1=${distance1}&distance2=${distance2}&station=${station}`
       );
       setPageOfData(data.data);
+      setIsLoading(false);
     }
     //one case
     else if (enddayofsearch) {
@@ -193,6 +221,7 @@ function InitialFetch({
         `http://localhost:3000/onlyday?month=${dataset}&start=${startdayofsearch}&end=${enddayofsearch}`
       );
       setPageOfData(data.data);
+      setIsLoading(false);
       // const total = Math.trunc(data.data / 1000);
       // const emptyArray = [...Array(total).keys()];
       // console.log(emptyArray);
@@ -203,24 +232,28 @@ function InitialFetch({
         `http://localhost:3000/onlyduration?month=${dataset}&duration1=${duration1}&duration2=${duration2}`
       );
       setPageOfData(data.data);
+      setIsLoading(false);
     } else if (station) {
       console.log('inside station');
       const data = await axios.get(
         `http://localhost:3000/onlystation?month=${dataset}&station=${station}`
       );
       setPageOfData(data.data);
+      setIsLoading(false);
     } else if (distance2) {
       console.log('inside distance');
       const data = await axios.get(
         `http://localhost:3000/onlydistance?month=${dataset}&distance1=${distance1}&distance2=${distance2}`
       );
       setPageOfData(data.data);
+      setIsLoading(false);
     } else if (sort) {
       console.log('inside sort');
       const data = await axios.get(
         `http://localhost:3000/onlysort?month=${dataset}&sort=${sort}`
       );
       setPageOfData(data.data);
+      setIsLoading(false);
     } else {
       const data = await axios.get(
         `http://localhost:3000/everytoursofthemonth?month=${dataset}`
@@ -234,6 +267,7 @@ function InitialFetch({
         `http://localhost:3000/page?page=0&month=${dataset}`
       );
       setPageOfData(pieceOfData.data);
+      setIsLoading(false);
     }
   };
 
@@ -250,11 +284,13 @@ function InitialFetch({
         `http://localhost:3000/sortedpage?page=${page}&month=${dataset}&sort=${sort}`
       );
       setPageOfData(pieceOfData.data);
+      setIsLoading(false);
     } else {
       let pieceOfData = await axios.get(
         `http://localhost:3000/page?page=${page}&month=${dataset}`
       );
       setPageOfData(pieceOfData.data);
+      setIsLoading(false);
       let initialDate = new Date(pieceOfData.data[0].departure);
       let convertedDate = initialDate.toDateString();
       console.log(convertedDate);
@@ -277,6 +313,7 @@ function InitialFetch({
         .localeCompare(b.departure_station.toLowerCase())
     );
     setPageOfData(array);
+    setIsLoading(false);
   };
   const sortByArriveStation = () => {
     const array = [...pageOfData];
@@ -285,39 +322,49 @@ function InitialFetch({
         .toLowerCase()
         .localeCompare(b.return_station.toLowerCase())
     );
-    console.log(array);
     setPageOfData(array);
+    setIsLoading(false);
   };
   const sortingByDate = () => {
     const array = [...pageOfData];
     array.sort((a, b) => {
       return new Date(b.departure) - new Date(a.departure);
     });
-    console.log(array);
     setPageOfData(array);
+    setIsLoading(false);
   };
   const sortingByDistance = () => {
     const array = [...pageOfData];
     array.sort((a, b) => {
       return b.covered_distance - a.covered_distance;
     });
-    console.log(array);
+
     setPageOfData(array);
+    setIsLoading(false);
   };
   const sortingByDuration = () => {
     const array = [...pageOfData];
     array.sort((a, b) => {
       return b.duration - a.duration;
     });
-    console.log(array);
+
     setPageOfData(array);
+    setIsLoading(false);
   };
 
   return (
     <div className="fetcher">
-      {pageOfData.length !== 0 ? (
+      {isLoading ? (
+        <div className="fetcher--loading">
+          ...LOADING................................................
+        </div>
+      ) : null}
+      {pageOfData ? (
         <div className="fetcher__data">
           <div className="fetcher__data--header">
+            <div className="fetcher__data--header-5" onClick={sortingByDate}>
+              day
+            </div>
             <div
               className="fetcher__data--header-1"
               onClick={sortByDepartureStation}
@@ -341,9 +388,6 @@ function InitialFetch({
               onClick={sortingByDistance}
             >
               distance
-            </div>
-            <div className="fetcher__data--header-5" onClick={sortingByDate}>
-              day
             </div>
           </div>
           {pageOfData.map((x) => {
@@ -372,14 +416,14 @@ function InitialFetch({
             );
           })}
         </div>
-      ) : (
-        <div>...LOADING</div>
-      )}
-      <h1 className="fetcher__pages-header">
-        total number of queries in {dataset.toUpperCase()}: {numberOfRows}
-      </h1>
+      ) : null}
+      {numberOfRows ? (
+        <h1 className="fetcher__pages-header">
+          total number of queries in {dataset.toUpperCase()}: {numberOfRows}
+        </h1>
+      ) : null}
       <div className="fetcher__pages">
-        {numberOfRows ? (
+        {arrayOfPages ? (
           arrayOfPages.map((x) => {
             return (
               <div
