@@ -37,6 +37,80 @@
     grid-column-start: 1;
     margin-top: 3rem; }
 
+.fetcher {
+  margin-left: 50%;
+  transform: translateX(-50%);
+  width: 70rem;
+  background-color: snow; }
+  .fetcher--loading {
+    position: absolute;
+    bottom: 3rem; }
+  .fetcher__data {
+    margin-top: 10rem;
+    margin-bottom: 90px;
+    width: 70rem;
+    display: grid; }
+    .fetcher__data--header {
+      font-size: 1.5rem;
+      width: 70rem;
+      display: flex;
+      position: sticky;
+      background-color: rgba(62, 63, 62, 0.4);
+      top: 0;
+      left: 0;
+      flex-direction: row;
+      justify-content: space-around; }
+      .fetcher__data--header-1 {
+        grid-row-start: 2;
+        grid-column-start: 2; }
+      .fetcher__data--header-2 {
+        grid-row-start: 2;
+        grid-column-start: 3; }
+      .fetcher__data--header-3 {
+        grid-row-start: 2;
+        grid-column-start: 4; }
+      .fetcher__data--header-4 {
+        grid-row-start: 2;
+        grid-column-start: 5; }
+      .fetcher__data--header-5 {
+        grid-row-start: 2;
+        grid-column-start: 1; }
+    .fetcher__data-departure {
+      margin-left: 1rem; }
+    .fetcher__data-arrstation {
+      margin-left: 2rem; }
+    .fetcher__data-duration {
+      margin-left: 4rem; }
+    .fetcher__data-distance {
+      margin-left: 7rem; }
+    .fetcher__data-content {
+      border-bottom: 1px solid gray;
+      width: 100%;
+      margin-top: 1rem;
+      grid-column-start: 1;
+      grid-column-end: 4;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr; }
+  .fetcher__pages {
+    position: sticky;
+    bottom: 0;
+    left: 4rem;
+    overflow-x: scroll;
+    width: 100%;
+    display: flex;
+    flex-direction: row; }
+    .fetcher__pages-header {
+      background-color: rgba(255, 0, 0, 0.6);
+      position: sticky;
+      height: 7rem;
+      left: 0;
+      bottom: 0; }
+    .fetcher__pages-content {
+      cursor: pointer;
+      margin: 2px;
+      background-color: antiquewhite;
+      padding: 2px; }
+
 * {
   margin: 0;
   box-sizing: border-box; }
@@ -72,73 +146,3 @@ body {
   position: absolute;
   top: 30rem;
   left: 50rem; }
-
-.fetcher {
-  background-color: snow; }
-  .fetcher__data {
-    margin-bottom: 90px;
-    width: 600px;
-    display: grid; }
-    .fetcher__data--header {
-      font-size: 1.5rem;
-      width: 700px;
-      display: grid;
-      position: fixed;
-      background-color: rgba(81, 255, 0, 0.9);
-      height: 40px;
-      top: 0;
-      left: 0;
-      right: 0; }
-      .fetcher__data--header-1 {
-        grid-row-start: 2;
-        grid-column-start: 2; }
-      .fetcher__data--header-2 {
-        grid-row-start: 2;
-        grid-column-start: 3; }
-      .fetcher__data--header-3 {
-        grid-row-start: 2;
-        grid-column-start: 4; }
-      .fetcher__data--header-4 {
-        margin-right: -30px;
-        grid-row-start: 2;
-        grid-column-start: 5; }
-      .fetcher__data--header-5 {
-        margin-left: 30px;
-        grid-row-start: 2;
-        grid-column-start: 1; }
-    .fetcher__data-depstation {
-      width: 25%;
-      margin: 2px; }
-    .fetcher__data-arrstation {
-      width: 25%;
-      margin-left: 32px; }
-    .fetcher__data-duration {
-      margin-left: 20px;
-      width: 25%; }
-    .fetcher__data-distance {
-      width: 25%;
-      margin-right: 70px; }
-    .fetcher__data-content {
-      border-bottom: 1px solid gray;
-      width: 140%;
-      grid-column-start: 1;
-      grid-column-end: 4;
-      display: flex; }
-  .fetcher__pages {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    overflow-x: scroll;
-    width: 500px;
-    display: flex;
-    flex-direction: row; }
-    .fetcher__pages-header {
-      background-color: rgba(255, 0, 0, 0.6);
-      position: fixed;
-      bottom: 40px;
-      left: 0; }
-    .fetcher__pages-content {
-      cursor: pointer;
-      margin: 2px;
-      background-color: antiquewhite;
-      padding: 2px; }
