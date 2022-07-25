@@ -83,10 +83,12 @@ const SortChoice = ({ userChoices }) => {
     setDuration2(e.target.value);
   };
   return (
-    <div>
-      <div>
-        month (mandatory)
-        <select onChange={selectingMonth}>
+    <div className="sortchoice">
+      <div className="sortchoice--month">
+        <select id="month" onChange={selectingMonth}>
+          <option value="choose a month" disabled selected hidden>
+            choose a month
+          </option>
           <option></option>
 
           {datasets.map((month) => {
@@ -97,10 +99,15 @@ const SortChoice = ({ userChoices }) => {
             );
           })}
         </select>
+        <label className="sortchoice--month_label" for="month">
+          month (mandatory)
+        </label>
       </div>
-      <div>
-        from station
-        <select onChange={selectingStation}>
+      <div className="sortchoice--fromstation">
+        <select onChange={selectingStation} id="station">
+          <option disabled selected hidden>
+            filter by station
+          </option>
           <option></option>
           {stations.map((station) => {
             return (
@@ -110,68 +117,97 @@ const SortChoice = ({ userChoices }) => {
             );
           })}
         </select>
+        <label for="station">filter by station</label>
       </div>
-      <div>
-        from day
-        <select onChange={selectingStartDay}>
-          <option></option>
-          {month === 'june'
-            ? month30days.map((day) => {
-                return <option key={day}>{day}</option>;
-              })
-            : monthdays.map((day) => {
-                return <option key={day}>{day}</option>;
-              })}
-        </select>
-      </div>
-      {beginDay ? (
-        <div>
-          to day
-          <select onChange={selectingEndDay}>
-            <option defaultValue="choose the dataset"></option>
+      <div className="sortchoice--day">
+        <div className="sortchoice--day_from">
+          <select onChange={selectingStartDay} id="startday">
+            <option disabled selected hidden>
+              start day
+            </option>
+            <option></option>
             {month === 'june'
-              ? month30days
-                  .filter((day) => day > beginDay)
-                  .map((day) => {
-                    return <option key={day}>{day}</option>;
-                  })
-              : monthdays
-                  .filter((day) => day > beginDay)
-                  .map((day) => {
-                    return <option key={day}>{day}</option>;
-                  })}
+              ? month30days.map((day) => {
+                  return <option key={day}>{day}</option>;
+                })
+              : monthdays.map((day) => {
+                  return <option key={day}>{day}</option>;
+                })}
           </select>
+          <label for="startday">start day</label>
         </div>
-      ) : null}
-
-      <div>
-        <div>
-          distance from
-          <input id="distance_from" type="text" onChange={distanceFrom}></input>
+        {beginDay ? (
+          <div className="sortchoice--day_to">
+            <select onChange={selectingEndDay} id="endday">
+              <option disabled selected hidden>
+                end day
+              </option>
+              <option></option>
+              {month === 'june'
+                ? month30days
+                    .filter((day) => day > beginDay)
+                    .map((day) => {
+                      return <option key={day}>{day}</option>;
+                    })
+                : monthdays
+                    .filter((day) => day > beginDay)
+                    .map((day) => {
+                      return <option key={day}>{day}</option>;
+                    })}
+            </select>
+            <label for="endday">end day</label>
+          </div>
+        ) : null}
+      </div>
+      <div className="sortchoice--distance">
+        <div className="sortchoice--distance_from">
+          <input
+            id="distance_from"
+            type="text"
+            onChange={distanceFrom}
+            placeholder="minimum distance"
+          ></input>
+          <label for="distance_from">minimum distance</label>
         </div>
         {distanceParam1 ? (
-          <div>
-            distance to
-            <input id="distance_to" type="text" onChange={distanceTo}></input>
+          <div className="sortchoice--distance_to">
+            <input
+              id="distance_to"
+              type="text"
+              onChange={distanceTo}
+              placeholder="maximum distance"
+            ></input>
+            <label for="distance_to">max distance</label>
           </div>
         ) : null}
       </div>
-      <div>
-        <div>
-          duration from
-          <input type="text" onChange={durationFrom}></input>
+      <div className="sortchoice--duration">
+        <div className="sortchoice--duration_from">
+          <input
+            type="text"
+            onChange={durationFrom}
+            id="durationfrom"
+            placeholder="minimum time"
+          ></input>
+          <label for="durationfrom">minimum time</label>
         </div>
         {duration1 ? (
-          <div>
-            duration to<input type="text" onChange={durationTo}></input>
+          <div className="sortchoice--duration_to">
+            <input
+              type="text"
+              onChange={durationTo}
+              placeholder="maximum time"
+            ></input>
+            <label for="maxduration">maximum time</label>
           </div>
         ) : null}
       </div>
-
-      <div>
-        sort by
-        <select onChange={selectingSortBy}>
-          <option defaultValue="sort by"></option>
+      <div className="sortchoice--sortby">
+        <select onChange={selectingSortBy} id="sortby">
+          <option disabled selected hidden>
+            sort results
+          </option>
+          <option></option>
 
           {sortby.map((sort) => {
             return (
@@ -181,9 +217,14 @@ const SortChoice = ({ userChoices }) => {
             );
           })}
         </select>
+        <label for="sortby">sort results</label>
       </div>
-      <button onClick={sendingOptions}>OK</button>
-      {invalid ? <div>choose a month</div> : null}
+      <div className="sortchoice--btn">
+        <button onClick={sendingOptions} className="sortchoice--btn_btn">
+          OK
+        </button>
+        {invalid ? <div>choose a month</div> : null}
+      </div>
     </div>
   );
 };
