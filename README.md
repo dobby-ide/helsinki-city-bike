@@ -10,3 +10,7 @@ CREATE TABLE stations(
     x_coord FLOAT(10,6),
     y_coord FLOAT(10,6)
 );
+
+
+## known bugs
+#### <code>position:sticky </code> has not been supported in IE previous versions than Microsoft Edge
