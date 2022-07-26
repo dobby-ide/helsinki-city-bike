@@ -4,12 +4,13 @@ import { useState } from 'react';
 const Switch = ({ initialchoice }) => {
   const [journeySearch, setJourneySearch] = useState(false);
   const onStarting = (e) => {
-    if (e.target.id === 'journey') {
-      setJourneySearch(true);
-    } else {
-      initialchoice(e.target.id);
-    }
-  };
+    initialchoice(e.target.id);
+    // if (e.target.id === 'journey') {
+    //   setJourneySearch(true);
+    // } else {
+    //   initialchoice(e.target.id);
+    // }
+  };;
   return (
     <div className="switchcontainer">
       <div id="sort" onClick={onStarting}>
