@@ -3,6 +3,8 @@
   transform:translateX(-50%);
   width:70rem;
 background-color: rgb(255, 250, 250);
+grid-column-start:2;
+
 &--loading{
 position:absolute;
 bottom:3rem;
