@@ -1,0 +1,43 @@
+.stationsdata_container{
+margin-left:50%;
+transform: translateX(-50%);
+&-arrival{
+  position:absolute;
+  top:4rem;
+  left:57rem;
+  width:53rem;
+  border:1px solid gray;
+}
+}
+.stationsdata{
+  grid-column-start:1;
+  grid-row-start:2;
+  grid-column-end: 3;
+  margin-left: 40%;
+  transform:translateX(-50%);
+  width:50rem;
+  margin-top:1rem;
+  display:grid;
+  grid-auto-rows: 7rem;
+  grid-template-columns: repeat(5,1fr);
+  &_input{
+    width:20rem;
+    margin-left:50%;
+    transform: translateX(-50%);
+  }
+  &_data{
+    font-size: 1.2rem;
+    padding:2px;
+    margin:2px;
+    width:12rem;
+    border:1px solid gray;
+    transition:2s;
+    &:hover{
+      background-color: rgb(255, 93, 93);
+    }
+    &-address{
+      color:white;
+    }
+    
+  }
+}
