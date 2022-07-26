@@ -51,7 +51,11 @@ function App() {
   //initial choice gives the user the possibility to switch from views(stations, filter..)
   const initialchoice = (e) => {
     console.log(e);
+    if (e === 'singlestation') {
+      setChosenMonth(null);
+    }
     setInitialChoice(e);
+    setXcoord(null);
   };
   const onShowingMapCoords = (x, y) => {
     setXcoord(x);
