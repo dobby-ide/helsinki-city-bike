@@ -1,5 +1,6 @@
 @import "components/sortchoice";
 @import "components/initialfetch";
+@import "components/stationsdata";
 
 *{
   margin:0;
@@ -7,8 +8,9 @@
 
 }
   .leaflet-container{
-  width:100vw;
-  height:100vh;
+    border:2px solid black;
+  width:50rem;
+  height:33rem;
 }
 html{
   font-size:10px;
@@ -17,25 +19,35 @@ body{
   font-family:"Lato", sans-serif;
 }
 .App{
-  height:50rem;
-  border:1px solid black;
+  
   width:70vw;
+  display:grid;
   margin-left:50%;
   transform:translateX(-50%);
 }
+
 .switchcontainer{
+  margin-bottom: 4rem;;
+  grid-row-start:1;
+  grid-column-start:1;
+  grid-column-end:4;
   margin-left:50%;
   transform:translateX(-50%);
   border:1px solid black;
   width: 40rem;
+  height:30px;
   display:flex;
   flex-direction: row;
   justify-content: space-between;
 
 }
 .map{
+  
+  grid-row-start:2;
+  grid-column-start:2;
   width:400px;
-  position:absolute;
-  top:30rem;
-  left:50rem;
+  margin-top:37rem;
+  margin-left: -25%;
+  transform:translateX(50%);
+  
 }
