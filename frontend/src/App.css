@@ -1,9 +1,11 @@
 .sortchoice {
   margin-left: 50%;
   transform: translateX(-50%);
-  max-width: 100%;
-  margin-top: 5rem;
   display: grid;
+  grid-row-start: 2;
+  grid-row-end: 3;
+  grid-column-start: 1;
+  grid-column-end: 4;
   align-content: space-between; }
   .sortchoice--month {
     grid-row-start: 1;
@@ -41,7 +43,8 @@
   margin-left: 50%;
   transform: translateX(-50%);
   width: 70rem;
-  background-color: snow; }
+  background-color: snow;
+  grid-column-start: 2; }
   .fetcher--loading {
     position: absolute;
     bottom: 3rem; }
@@ -111,13 +114,51 @@
       background-color: antiquewhite;
       padding: 2px; }
 
+.stationsdata_container {
+  margin-left: 50%;
+  transform: translateX(-50%); }
+  .stationsdata_container-arrival {
+    position: absolute;
+    top: 4rem;
+    left: 57rem;
+    width: 53rem;
+    border: 1px solid gray; }
+
+.stationsdata {
+  grid-column-start: 1;
+  grid-row-start: 2;
+  grid-column-end: 3;
+  margin-left: 40%;
+  transform: translateX(-50%);
+  width: 50rem;
+  margin-top: 1rem;
+  display: grid;
+  grid-auto-rows: 7rem;
+  grid-template-columns: repeat(5, 1fr); }
+  .stationsdata_input {
+    width: 20rem;
+    margin-left: 50%;
+    transform: translateX(-50%); }
+  .stationsdata_data {
+    font-size: 1.2rem;
+    padding: 2px;
+    margin: 2px;
+    width: 12rem;
+    border: 1px solid gray;
+    transition: 2s; }
+    .stationsdata_data:hover {
+      background-color: #ff5d5d; }
+    .stationsdata_data-address {
+      color: white; }
+
 * {
   margin: 0;
   box-sizing: border-box; }
 
 .leaflet-container {
-  width: 100vw;
-  height: 100vh; }
+  border: 2px solid black;
+  width: 50rem;
+  height: 33rem; }
 
 html {
   font-size: 10px; }
@@ -126,23 +167,29 @@ body {
   font-family: "Lato", sans-serif; }
 
 .App {
-  height: 50rem;
-  border: 1px solid black;
   width: 70vw;
+  display: grid;
   margin-left: 50%;
   transform: translateX(-50%); }
 
 .switchcontainer {
+  margin-bottom: 4rem;
+  grid-row-start: 1;
+  grid-column-start: 1;
+  grid-column-end: 4;
   margin-left: 50%;
   transform: translateX(-50%);
   border: 1px solid black;
   width: 40rem;
+  height: 30px;
   display: flex;
   flex-direction: row;
   justify-content: space-between; }
 
 .map {
+  grid-row-start: 2;
+  grid-column-start: 2;
   width: 400px;
-  position: absolute;
-  top: 30rem;
-  left: 50rem; }
+  margin-top: 37rem;
+  margin-left: -25%;
+  transform: translateX(50%); }
