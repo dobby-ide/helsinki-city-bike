@@ -118,11 +118,43 @@
   margin-left: 50%;
   transform: translateX(-50%); }
   .stationsdata_container-arrival {
+    line-height: 2rem;
     position: absolute;
     top: 4rem;
     left: 57rem;
-    width: 53rem;
+    width: 50rem;
     border: 1px solid gray; }
+    .stationsdata_container-arrival-header {
+      text-align: center;
+      font-weight: 900;
+      font-size: 1.2rem;
+      letter-spacing: 2px; }
+    .stationsdata_container-arrival-maininfo {
+      padding: 3px;
+      border-bottom: 1px solid black; }
+    .stationsdata_container-arrival-grid {
+      display: flex;
+      flex-direction: row; }
+      .stationsdata_container-arrival-grid-avg {
+        padding: 3px;
+        margin-left: 2rem;
+        border-left: 1px solid black;
+        padding-left: 2rem; }
+      .stationsdata_container-arrival-grid-top {
+        padding: 3px;
+        padding-right: 2rem;
+        border-right: 1px solid pink; }
+    .stationsdata_container-arrival-avg {
+      background-color: #edabab;
+      border: 1px solid black;
+      font-size: 1.3rem;
+      cursor: pointer;
+      padding: 2px; }
+    .stationsdata_container-arrival-popular {
+      padding: 2px;
+      background-color: #fee2ea;
+      font-size: 1.3rem;
+      border: 1px solid black; }
 
 .stationsdata {
   grid-column-start: 1;
@@ -151,6 +183,48 @@
     .stationsdata_data-address {
       color: white; }
 
+.switchcontainer {
+  margin-bottom: 4rem;
+  margin-top: 1rem;
+  padding: 1rem;
+  grid-row-start: 1;
+  grid-column-start: 1;
+  grid-column-end: 4;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  border: 1px solid black;
+  width: 40rem;
+  height: 6.5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between; }
+  .switchcontainer_sort {
+    padding: 1rem;
+    border: 1px solid black;
+    font-size: 1.5rem;
+    font-weight: 100;
+    border-radius: 10%;
+    background-color: #005105;
+    color: white;
+    cursor: pointer;
+    transition: 2s; }
+    .switchcontainer_sort:hover {
+      background-color: white;
+      color: black; }
+  .switchcontainer_station {
+    padding: 1rem;
+    border: 1px solid black;
+    font-size: 1.5rem;
+    font-weight: 100;
+    border-radius: 10%;
+    background-color: #5e0000;
+    color: white;
+    cursor: pointer;
+    transition: 2s; }
+    .switchcontainer_station:hover {
+      background-color: white;
+      color: black; }
+
 * {
   margin: 0;
   box-sizing: border-box; }
@@ -172,24 +246,10 @@ body {
   margin-left: 50%;
   transform: translateX(-50%); }
 
-.switchcontainer {
-  margin-bottom: 4rem;
-  grid-row-start: 1;
-  grid-column-start: 1;
-  grid-column-end: 4;
-  margin-left: 50%;
-  transform: translateX(-50%);
-  border: 1px solid black;
-  width: 40rem;
-  height: 30px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between; }
-
 .map {
   grid-row-start: 2;
   grid-column-start: 2;
   width: 400px;
-  margin-top: 37rem;
+  margin-top: 40rem;
   margin-left: -25%;
   transform: translateX(50%); }
