@@ -2,11 +2,53 @@
 margin-left:50%;
 transform: translateX(-50%);
 &-arrival{
+  line-height: 2rem;
   position:absolute;
   top:4rem;
   left:57rem;
-  width:53rem;
+  width:50rem;
   border:1px solid gray;
+  &-header{
+    text-align: center;
+    font-weight: 900;
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+  }
+  &-maininfo{
+    padding:3px;
+    border-bottom: 1px solid black;
+  }
+  &-grid{
+    display:flex;
+    flex-direction: row;
+    &-avg{
+      
+      padding:3px;
+      margin-left:2rem;
+      border-left:1px solid black;
+      padding-left:2rem;
+    }
+    &-top{
+      
+      padding:3px;
+      padding-right:2rem;
+      border-right: 1px solid pink;
+    }
+  }
+  &-avg{
+    background-color: rgb(237, 171, 171);
+    border:1px solid black;
+    font-size:1.3rem;
+    cursor:pointer;
+    padding:2px;
+  }
+  &-popular{
+    padding:2px;
+    background-color: rgb(254, 226, 234);
+    font-size:1.3rem;
+    border:1px solid black;
+    
+  }
 }
 }
 .stationsdata{
