@@ -141,17 +141,16 @@ const StationsData = ({ coords }) => {
       {arrivalNumber ? (
         <div className="stationsdata_container-arrival">
           <div className="stationsdata_container-arrival-header">
-            <h1>{stationName} in numbers</h1>
+            {stationName} in numbers
           </div>
-          <div>
-            From {stationName} {departureNumber} journeys have been departing
-            and {arrivalNumber} journeys finished to {stationName}
+          <div
+            onClick={onFurtherInfos}
+            className="stationsdata_container-arrival-avg"
+          >
+            average length of journeys
           </div>
-          <div onClick={onFurtherInfos}>
-            see the average distance of journeys starting and ending here
-          </div>
-          <div>
-            TOP 5 stations from and to this station in{' '}
+          <div className="stationsdata_container-arrival-popular">
+            popular station connections in &nbsp;
             <select onChange={selectMonth}>
               <option></option>
               {months.map((month) => {
@@ -164,71 +163,77 @@ const StationsData = ({ coords }) => {
             </select>
             <button onClick={onTop5Stations}>ok</button>
           </div>
-          {topReturnFromHere.length > 1 ? (
-            <div>
-              <div>
-                top 5 return stations from here in {top5Month}
-                {topReturnFromHere.map((station) => {
-                  return (
-                    <div>
+          <div className="stationsdata_container-arrival-maininfo">
+            From {stationName} {departureNumber} journeys have been departing
+            and {arrivalNumber} journeys finished to {stationName}
+          </div>
+          <div className="stationsdata_container-arrival-grid">
+            {topReturnFromHere.length > 1 ? (
+              <div className="stationsdata_container-arrival-grid-top">
+                <div>
+                  top return stations from here in {top5Month}
+                  {topReturnFromHere.map((station) => {
+                    return (
                       <div>
-                        To {station.return_station}, {station.cont} times
+                        <div>
+                          To {station.return_station}, {station.cont} times
+                        </div>
                       </div>
-                    </div>
-                  );
-                })}
-              </div>
+                    );
+                  })}
+                </div>
 
-              <div>
-                top 5 departure stations that ended here in {top5Month}
-                {topReturnToHere.map((station) => {
-                  return (
-                    <div>
+                <div>
+                  top departure stations in {top5Month}
+                  {topReturnToHere.map((station) => {
+                    return (
                       <div>
-                        From {station.departure_station}, {station.cont} times
+                        <div>
+                          From {station.departure_station}, {station.cont} times
+                        </div>
                       </div>
-                    </div>
-                  );
-                })}
+                    );
+                  })}
+                </div>
               </div>
-            </div>
-          ) : null}
-          {avgFrom ? (
-            <div>
-              <div>
-                average journey distance from this station(total):{' '}
-                {Math.round(avgFrom) / 1000}
+            ) : null}
+            {avgFrom ? (
+              <div className="stationsdata_container-arrival-grid-avg">
+                <div>
+                  average journey distance from this station(total):{' '}
+                  {Math.round(avgFrom) / 1000}
+                </div>
+                <div>
+                  average journey distance from this station(May):{' '}
+                  {Math.round(avgFromMay) / 1000}
+                </div>
+                <div>
+                  average journey distance from this station(June):{' '}
+                  {Math.round(avgFromJune) / 1000}
+                </div>
+                <div>
+                  average journey distance from this station(July):{' '}
+                  {Math.round(avgFromJuly) / 1000}
+                </div>
+                <div>
+                  average journey distance to this station(total):{' '}
+                  {Math.round(avgTo) / 1000}
+                </div>
+                <div>
+                  average journey distance to this station(May):{' '}
+                  {Math.round(avgToMay) / 1000}
+                </div>
+                <div>
+                  average journey distance to this station(June):{' '}
+                  {Math.round(avgToJune) / 1000}
+                </div>
+                <div>
+                  average journey distance to this station(July):{' '}
+                  {Math.round(avgToJuly) / 1000}
+                </div>
               </div>
-              <div>
-                average journey distance from this station(May):{' '}
-                {Math.round(avgFromMay) / 1000}
-              </div>
-              <div>
-                average journey distance from this station(June):{' '}
-                {Math.round(avgFromJune) / 1000}
-              </div>
-              <div>
-                average journey distance from this station(July):{' '}
-                {Math.round(avgFromJuly) / 1000}
-              </div>
-              <div>
-                average journey distance to this station(total):{' '}
-                {Math.round(avgTo) / 1000}
-              </div>
-              <div>
-                average journey distance to this station(May):{' '}
-                {Math.round(avgToMay) / 1000}
-              </div>
-              <div>
-                average journey distance to this station(June):{' '}
-                {Math.round(avgToJune) / 1000}
-              </div>
-              <div>
-                average journey distance to this station(July):{' '}
-                {Math.round(avgToJuly) / 1000}
-              </div>
-            </div>
-          ) : null}
+            ) : null}
+          </div>
         </div>
       ) : null}
     </div>
