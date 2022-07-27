@@ -304,49 +304,82 @@ function InitialFetch({
     }
   };
   //SORTING RESULTS ACCORDING TO COLUMNS PROVIDED
-  const sortByDepartureStation = () => {
+  const sortByDepartureStation = (e) => {
     const array = [...pageOfData];
+    if (e.target.id === 'up') {
+      array.sort((a, b) =>
+        a.departure_station
+          .toLowerCase()
+          .localeCompare(b.departure_station.toLowerCase())
+      );
+    } else {
+      array.sort((a, b) =>
+        b.departure_station
+          .toLowerCase()
+          .localeCompare(a.departure_station.toLowerCase())
+      );
+    }
+    setPageOfData(array);
+    setIsLoading(false);
+  };
+  const sortByArriveStation = (e) => {
+    const array = [...pageOfData];
+    if (e.target.id === 'up') {
+      array.sort((a, b) =>
+        a.return_station
+          .toLowerCase()
+          .localeCompare(b.return_station.toLowerCase())
+      );
+    } else {
+      array.sort((a, b) =>
+        b.return_station
+          .toLowerCase()
+          .localeCompare(a.return_station.toLowerCase())
+      );
+    }
+    setPageOfData(array);
+    setIsLoading(false);
+  };
+  const sortingByDate = (e) => {
+    const array = [...pageOfData];
+    if (e.target.id === 'up') {
+      array.sort((a, b) => {
+        return new Date(b.departure) - new Date(a.departure);
+      });
+    } else {
+      array.sort((a, b) => {
+        return new Date(a.departure) - new Date(b.departure);
+      });
+    }
+    setPageOfData(array);
+    setIsLoading(false);
+  };
+  const sortingByDistance = (e) => {
+    const array = [...pageOfData];
+    if (e.target.id === 'up') {
+      array.sort((a, b) => {
+        return b.covered_distance - a.covered_distance;
+      });
+    } else {
+      array.sort((a, b) => {
+        return a.covered_distance - b.covered_distance;
+      });
+    }
 
-    array.sort((a, b) =>
-      a.departure_station
-        .toLowerCase()
-        .localeCompare(b.departure_station.toLowerCase())
-    );
     setPageOfData(array);
     setIsLoading(false);
   };
-  const sortByArriveStation = () => {
+  const sortingByDuration = (e) => {
     const array = [...pageOfData];
-    array.sort((a, b) =>
-      a.return_station
-        .toLowerCase()
-        .localeCompare(b.return_station.toLowerCase())
-    );
-    setPageOfData(array);
-    setIsLoading(false);
-  };
-  const sortingByDate = () => {
-    const array = [...pageOfData];
-    array.sort((a, b) => {
-      return new Date(b.departure) - new Date(a.departure);
-    });
-    setPageOfData(array);
-    setIsLoading(false);
-  };
-  const sortingByDistance = () => {
-    const array = [...pageOfData];
-    array.sort((a, b) => {
-      return b.covered_distance - a.covered_distance;
-    });
-
-    setPageOfData(array);
-    setIsLoading(false);
-  };
-  const sortingByDuration = () => {
-    const array = [...pageOfData];
-    array.sort((a, b) => {
-      return b.duration - a.duration;
-    });
+    if (e.target.id === 'up') {
+      array.sort((a, b) => {
+        return b.duration - a.duration;
+      });
+    } else {
+      array.sort((a, b) => {
+        return a.duration - b.duration;
+      });
+    }
 
     setPageOfData(array);
     setIsLoading(false);
@@ -362,32 +395,94 @@ function InitialFetch({
       {pageOfData ? (
         <div className="fetcher__data">
           <div className="fetcher__data--header">
-            <div className="fetcher__data--header-5" onClick={sortingByDate}>
-              day
+            <div className="fetcher__data--header-5">
+              <div className="fetcher__data--header-5-text">day</div>
+              <div
+                id="up"
+                className="fetcher__data--header-5 uparrow"
+                onClick={sortingByDate}
+              >
+                &#8963;{' '}
+              </div>
+              <div
+                id="down"
+                className="fetcher__data--header-5 downarrow"
+                onClick={sortingByDate}
+              >
+                &#x2304;
+              </div>
             </div>
-            <div
-              className="fetcher__data--header-1"
-              onClick={sortByDepartureStation}
-            >
-              departure station
+            <div className="fetcher__data--header-1">
+              <div className="fetcher__data--header-1-text">
+                departure station
+              </div>
+              <div
+                id="up"
+                className="fetcher__data--header-1 uparrow"
+                onClick={sortByDepartureStation}
+              >
+                &#8963;{' '}
+              </div>
+              <div
+                id="down"
+                className="fetcher__data--header-1 downarrow"
+                onClick={sortByDepartureStation}
+              >
+                &#x2304;
+              </div>
             </div>
-            <div
-              className="fetcher__data--header-2"
-              onClick={sortByArriveStation}
-            >
-              return station
+            <div className="fetcher__data--header-2">
+              <div className="fetcher__data--header-2-text">return station</div>
+              <div
+                id="up"
+                className="fetcher__data--header-2 uparrow"
+                onClick={sortByArriveStation}
+              >
+                &#8963;{' '}
+              </div>
+              <div
+                id="down"
+                className="fetcher__data--header-2 downarrow"
+                onClick={sortByArriveStation}
+              >
+                &#x2304;
+              </div>
             </div>
-            <div
-              className="fetcher__data--header-3"
-              onClick={sortingByDuration}
-            >
-              duration(minutes)
+            <div className="fetcher__data--header-3">
+              <div className="fetcher__data--header-3-text">
+                duration(minutes)
+              </div>
+              <div
+                id="up"
+                className="fetcher__data--header-3 uparrow"
+                onClick={sortingByDuration}
+              >
+                &#8963;{' '}
+              </div>
+              <div
+                id="down"
+                className="fetcher__data--header-3 downarrow"
+                onClick={sortingByDuration}
+              >
+                &#x2304;
+              </div>
             </div>
-            <div
-              className="fetcher__data--header-4"
-              onClick={sortingByDistance}
-            >
-              distance
+            <div className="fetcher__data--header-4">
+              <div className="fetcher__data--header-4-text">distance</div>
+              <div
+                id="up"
+                className="fetcher__data--header-4 uparrow"
+                onClick={sortingByDistance}
+              >
+                &#8963;{' '}
+              </div>
+              <div
+                id="down"
+                className="fetcher__data--header-4 downarrow"
+                onClick={sortingByDistance}
+              >
+                &#x2304;
+              </div>
             </div>
           </div>
           {pageOfData.map((x) => {
