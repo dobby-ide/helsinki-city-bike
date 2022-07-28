@@ -1,3 +1,22 @@
+@keyframes spinning{
+
+  0% {
+    opacity:0;
+    transform:rotate(90deg);
+  }
+  20%{
+    opacity:1;
+    transform:rotate(360deg);
+  }
+80% {
+  opacity:1;
+   transform:rotate(90deg);
+}
+100% {
+  opacity: 1;
+  transform:rotate(180deg);
+}
+}
 .fetcher{
   margin-left:50%;
   transform:translateX(-50%);
@@ -6,8 +25,15 @@ background-color: rgb(255, 250, 250);
 grid-column-start:2;
 
 &--loading{
-position:absolute;
-bottom:3rem;
+margin-left:63%;
+transform: translateX(-50%);
+
+&-wheel-img{
+  width:6rem;
+   animation-iteration-count: infinite;
+  animation-name: spinning;
+  animation-duration:5s;
+}
 }
 
   &__data{
@@ -98,6 +124,7 @@ margin-left: 4rem;;
   margin-left:7rem;
 }
 &-content{
+  
       border-bottom: 1px solid gray;
     width:100%;
     margin-top:1rem;
@@ -106,9 +133,7 @@ margin-left: 4rem;;
      display:grid;
      grid-template-columns:1fr 1fr 1fr 1fr 1fr;
      
-     
-    
-      
+  
     }
   }
 &__pages{
