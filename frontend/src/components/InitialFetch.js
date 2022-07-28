@@ -389,7 +389,11 @@ function InitialFetch({
     <div className="fetcher">
       {isLoading ? (
         <div className="fetcher--loading">
-          ...LOADING................................................
+          <img
+            src="\img\bikewheel2.png"
+            alt="loading..."
+            className="fetcher--loading-wheel-img"
+          />
         </div>
       ) : null}
       {pageOfData ? (
@@ -489,11 +493,13 @@ function InitialFetch({
             return (
               <div className="fetcher__data-content">
                 <div className="fetcher__data-departure">
-                  {new Date(x.departure)
-                    .toDateString()
-                    .split(' ')
-                    .slice(1)
-                    .join(' ')}
+                  {!isLoading
+                    ? new Date(x.departure)
+                        .toDateString()
+                        .split(' ')
+                        .slice(1)
+                        .join(' ')
+                    : null}
                 </div>
                 <div className="fetcher__data-depstation">
                   {x.departure_station}
@@ -502,7 +508,7 @@ function InitialFetch({
                   {x.return_station}
                 </div>
                 <div className="fetcher__data-duration">
-                  {Math.round(x.duration / 60).toString()}
+                  {!isLoading ? Math.round(x.duration / 60).toString() : null}
                 </div>
                 <div className="fetcher__data-distance">
                   {x.covered_distance}
