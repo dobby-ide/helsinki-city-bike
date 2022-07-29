@@ -32,7 +32,8 @@ body{
   grid-column-start:2;
   width:400px;
   margin-top:40rem;
-  margin-left: -25%;
+  margin-right:calc(20% + 20px);
+  margin-left:calc(-40% + 40px);
   transform:translateX(50%);
   
 }

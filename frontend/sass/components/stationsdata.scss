@@ -1,11 +1,15 @@
 .stationsdata_container{
+  width:63rem;
 margin-left:50%;
 transform: translateX(-50%);
+border:2px solid black;
 &-arrival{
   line-height: 2rem;
   position:absolute;
-  top:4rem;
-  left:57rem;
+  top:3.3rem;
+ margin-right:calc(20% + 20px);
+  margin-left:calc(-40% + 40px);
+  left:91rem;
   width:50rem;
   border:1px solid gray;
   &-header{
@@ -52,13 +56,15 @@ transform: translateX(-50%);
 }
 }
 .stationsdata{
+  filter:grayscale(80%);
   background-blend-mode:normal;
   background-image: linear-gradient(to right bottom, rgba(rgb(226, 224, 96),.5),rgba(rgb(210, 178, 19),.7)), url(../public/img/bikes.jpg);
   background-size:100% 60rem;
   grid-column-start:1;
   grid-row-start:2;
   grid-column-end: 3;
-  margin-left: 40%;
+  margin-left: 50%;
+  margin-right:33%;
   transform:translateX(-50%);
   width:62rem;
   margin-top:1rem;
