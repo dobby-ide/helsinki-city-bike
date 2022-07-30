@@ -259,7 +259,7 @@ function InitialFetch({
         `http://localhost:3000/everytoursofthemonth?month=${dataset}`
       );
       setNumberOfRows(data.data);
-      const total = Math.trunc(data.data / 1000);
+      const total = Math.trunc(data.data / 10000);
       const emptyArray = [...Array(total).keys()];
       console.log(emptyArray);
       setArrayOfpages(emptyArray);

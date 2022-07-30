@@ -200,8 +200,7 @@
 .stationsdata_container {
   width: 63rem;
   margin-left: 50%;
-  transform: translateX(-50%);
-  border: 2px solid black; }
+  transform: translateX(-50%); }
   .stationsdata_container-arrival {
     line-height: 2rem;
     position: absolute;
