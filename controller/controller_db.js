@@ -56,7 +56,7 @@ module.exports = {
   findSinglepageOfData: (page, month) => {
     function myProm(resolve, reject) {
       dbConnection.query(
-        `SELECT * FROM ${month} where id>${page}*1000 AND id < (${page} + 1)*1000`,
+        `SELECT * FROM ${month} where id>${page}*10000 AND id < (${page} + 1)*10000`,
         (err, results) => {
           if (results) {
             resolve(results);
