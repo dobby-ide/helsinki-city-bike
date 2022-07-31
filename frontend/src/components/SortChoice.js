@@ -6,6 +6,10 @@ import axios from 'axios';
 const SortChoice = ({ userChoices }) => {
   let datasets = ['may', 'june', 'july'];
   let sortby = ['distance', 'duration'];
+  let port = '';
+  if (process.env.NODE_ENV === 'development') {
+    port = 'http://localhost:3000';
+  }
 
   //not yet copied
   let monthdays = [
@@ -22,7 +26,7 @@ const SortChoice = ({ userChoices }) => {
     availableStations();
   }, []);
   const availableStations = async () => {
-    const data = await axios.get('http://localhost:3000/allstations');
+    const data = await axios.get(`${port}/allstations`);
 
     let stationNames = data.data;
     setStations(stationNames);

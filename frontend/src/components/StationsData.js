@@ -19,11 +19,15 @@ const StationsData = ({ coords }) => {
   const [top5Month, setTop5Month] = useState();
   const [topReturnFromHere, setTopReturnFromHere] = useState([]);
   const [topReturnToHere, setTopReturnToHere] = useState([]);
+  let port = '';
+  if (process.env.NODE_ENV === 'development') {
+    port = 'http://localhost:3000';
+  }
   useEffect(() => {
     availableStations();
   }, []);
   const availableStations = async () => {
-    const data = await axios.get('http://localhost:3000/allstations');
+    const data = await axios.get(`${port}/allstations`);
 
     let stationNames = data.data;
     setStations(stationNames);
@@ -48,7 +52,7 @@ const StationsData = ({ coords }) => {
   };
   const onStationsData = async (fid) => {
     const data = await axios.get(
-      `http://localhost:3000/infostation?fid=${fid}`
+      `${port}/infostation?fid=${fid}`
     );
     let stationInfo = data.data[0];
     const numberOfDepartures = stationInfo[Object.keys(stationInfo)[0]];
@@ -62,7 +66,7 @@ const StationsData = ({ coords }) => {
   //logic to give the user the average distance from and to a station and monthly based or total
   const onFurtherInfos = async () => {
     const data = await axios.get(
-      `http://localhost:3000/furtherinfostation?id=${currentStationId}`
+      `${port}/furtherinfostation?id=${currentStationId}`
     );
     console.log(data.data);
     const avgJourneyMayFrom = data.data[0].average;
@@ -87,7 +91,7 @@ const StationsData = ({ coords }) => {
   //TOP 5 Stations
   const onTop5Stations = async () => {
     const data = await axios.get(
-      `http://localhost:3000/top5stations?id=${currentStationId}&month=${top5Month}`
+      `${port}/top5stations?id=${currentStationId}&month=${top5Month}`
     );
     console.log(data.data);
     const topDepartures = data.data.filter(
