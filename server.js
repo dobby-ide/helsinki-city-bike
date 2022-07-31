@@ -7,6 +7,7 @@ const cors = require('cors');
 const port = process.env.PORT || 3000;
 const database = require('./controller/controller_db');
 app.use(cors());
+app.use(express.static('frontend/build'));
 app.use(express.json());
 //connecting
 app.listen(port, () => {
