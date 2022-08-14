@@ -12,7 +12,7 @@
 
 ## Stations view
 
-### Stations view shows all the available stations at once with te posibility to search for te right station. When a user clic the station it will show a map with the station, and further infos about that station: total number of journeys departing from the station and number of journeys returning to the station.
+### Stations view shows all the available stations at once with the posibility to search for the right station. When a user clicks the station it will show a map with the station, and further infos about that station: total number of journeys departing from the station and number of journeys returning to the station.
 ### Then the user has also the possibility to seek further numbers facts about the station: average length of journeys and popular station connections according to the month chosen.
 ***
 ***
